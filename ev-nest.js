@@ -21,11 +21,13 @@ window.onload = function() {
   ctx = canvas.getContext('2d');
   canvas.style.zIndex = -1;
   canvas.style.position = 'fixed';
+  canvas.style.left=0;
+  canvas.style.top=0;
   canvas.style.opacity = conf.opacity;
   canvas.width = ww;
   canvas.height = wh;
   document.body.appendChild(canvas);
-  for (i = 0; i < conf.count; i++) {
+  for (let i = 0; i < conf.count; i++) {
     nodes.push({
       x: Math.random() * ww,
       y: Math.random() * wh,
@@ -42,13 +44,13 @@ function render() {
   ctx.clearRect(0, 0, ww, wh);
   nodes.forEach(function(node, index) {
     ctx.fillRect(node.x - .5, node.y - .5, 1, 1);
-    for (i = index + 1; i < nodes.length; i++) {
-      n = nodes[i];
-      dx = n.x - node.x;
-      dy = n.y - node.y;
-      d2 = dx * dx + dy * dy;
-      r2 = n.r * n.r;
-      rt = 1 - d2 / r2;
+    for (let i = index + 1; i < nodes.length; i++) {
+      let n = nodes[i];
+      let dx = n.x - node.x;
+      let dy = n.y - node.y;
+      let d2 = dx * dx + dy * dy;
+      let r2 = n.r * n.r;
+      let rt = 1 - d2 / r2;
       if (d2 < r2) {
         ctx.beginPath();
         ctx.lineWidth = rt / 2;
